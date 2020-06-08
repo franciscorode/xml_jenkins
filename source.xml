@@ -3,7 +3,10 @@
      python-xmlrunner but which are not supported by the junkins xUnit plugin
      (because its author broke the retro-compatibility by removing them).
      So it'll remove the file, line and timestamp attributes of all the testcase
-     tags. -->
+     tags.
+     https://github.com/xmlrunner/unittest-xml-reporting#jenkins-xunit-plugin-version-1104
+     https://github.com/xmlrunner/unittest-xml-reporting/issues/209#issuecomment-575567115
+-->
 <xsl:stylesheet
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
