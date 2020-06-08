@@ -1,0 +1,25 @@
+<?xml version='1.0'?>
+<!-- This stylesheet allows to filter out the attributes which
+     python-xmlrunner but which are not supported by the junkins xUnit plugin
+     (because its author broke the retro-compatibility by removing them).
+     So it'll remove the file, line and timestamp attributes of all the testcase
+     tags. -->
+<xsl:stylesheet
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
+	<xsl:output method="xml" indent="yes" />
+
+	<xsl:template match="node()|@*">
+		<xsl:copy>
+			<xsl:apply-templates select="node()|@*" />
+		</xsl:copy>
+	</xsl:template>
+
+	<xsl:template match="//testcase">
+		<testcase>
+			<xsl:for-each select="@*[name() != 'line' and name() != 'file' and name() != 'timestamp']|child::*">
+					<xsl:copy-of select="."/>
+			</xsl:for-each>
+		</testcase>
+	</xsl:template>
+</xsl:stylesheet>
